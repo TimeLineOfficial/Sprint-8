@@ -119,7 +119,7 @@ export default function App() {
           isOnline={isOnline}
         />
 
-        <main className="flex-1">
+        <main className="flex-1 pb-16 md:pb-0">
           {/* Phase 1: Suspense Fallback for React.lazy Route Chunks */}
           <Suspense fallback={<LoadingSkeleton />}>
             <Routes>

@@ -105,23 +105,26 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8 space-y-4">
             {cart.map(({ product, quantity }) => (
-              <div key={product.id} className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-between gap-4 shadow-sm text-xs">
-                <img src={product.image} alt={product.name} width={60} height={60} className="w-16 h-16 object-contain rounded-lg bg-slate-50" />
-
-                <div className="flex-1">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-xs">{product.name}</h4>
-                  <div className="text-slate-500 text-[11px]">${product.price} each</div>
+              <div key={product.id} className="p-3 sm:p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl sm:rounded-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 shadow-sm text-xs">
+                <div className="flex items-center space-x-3 min-w-0 flex-1">
+                  <img src={product.image} alt={product.name} width={50} height={50} className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg bg-slate-50 flex-shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-bold text-slate-900 dark:text-white text-xs truncate">{product.name}</h4>
+                    <div className="text-slate-500 text-[11px]">${product.price} each</div>
+                  </div>
                 </div>
 
-                <div className="flex items-center space-x-2 border rounded-lg p-1 bg-slate-50 dark:bg-slate-900">
-                  <button onClick={() => onUpdateQty(product.id, quantity - 1)} className="p-1"><Minus className="w-3.5 h-3.5" /></button>
-                  <span className="px-2 font-bold">{quantity}</span>
-                  <button onClick={() => onUpdateQty(product.id, quantity + 1)} className="p-1"><Plus className="w-3.5 h-3.5" /></button>
+                <div className="flex items-center justify-between w-full sm:w-auto gap-3 pt-2 sm:pt-0 border-t sm:border-0 border-slate-100 dark:border-slate-700/60">
+                  <div className="flex items-center space-x-1.5 border border-slate-300 dark:border-slate-700 rounded-xl p-1 bg-slate-50 dark:bg-slate-900">
+                    <button onClick={() => onUpdateQty(product.id, quantity - 1)} className="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"><Minus className="w-3.5 h-3.5" /></button>
+                    <span className="px-2 font-extrabold text-xs">{quantity}</span>
+                    <button onClick={() => onUpdateQty(product.id, quantity + 1)} className="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"><Plus className="w-3.5 h-3.5" /></button>
+                  </div>
+
+                  <div className="font-extrabold text-sm text-slate-900 dark:text-white">${product.price * quantity}</div>
+
+                  <button onClick={() => onRemoveItem(product.id)} className="p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-xl active:scale-95"><Trash2 className="w-4 h-4" /></button>
                 </div>
-
-                <div className="font-extrabold text-sm text-slate-900 dark:text-white">${product.price * quantity}</div>
-
-                <button onClick={() => onRemoveItem(product.id)} className="p-1.5 text-rose-500 hover:bg-rose-50 rounded"><Trash2 className="w-4 h-4" /></button>
               </div>
             ))}
           </div>
