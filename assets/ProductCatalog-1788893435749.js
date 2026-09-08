@@ -1,4 +1,4 @@
-import{c as f,r as a,j as e,S as L,X as k,C as y,b as E,a as I}from"./index-1788893230841.js";import{P as M}from"./ProductCard-1788893230841.js";import"./star-1788893230841.js";/**
+import{c as f,r as a,j as e,S as L,X as k,C as y,b as E,a as I}from"./index-1788893435749.js";import{P as M}from"./ProductCard-1788893435749.js";import"./star-1788893435749.js";/**
  * @license lucide-react v0.428.0 - ISC
  *
  * This source code is licensed under the ISC license.

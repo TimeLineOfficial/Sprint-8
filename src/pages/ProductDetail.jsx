@@ -10,7 +10,9 @@ import {
   Plus, 
   Minus, 
   CheckCircle2, 
-  Layers
+  RotateCcw,
+  PackageCheck,
+  Award
 } from 'lucide-react';
 
 export default function ProductDetail({ allProducts = [], onAddToCart, getItemQuantity }) {
@@ -33,7 +35,7 @@ export default function ProductDetail({ allProducts = [], onAddToCart, getItemQu
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
       <div className="flex items-center space-x-2 text-xs text-slate-500">
         <Link to="/" className="hover:text-blue-600">Home</Link>
         <span>/</span>
@@ -42,8 +44,9 @@ export default function ProductDetail({ allProducts = [], onAddToCart, getItemQu
         <span className="text-slate-900 dark:text-white font-semibold truncate">{product.name}</span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Product Media with Explicit Image Dimensions */}
+      {/* Main Product Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        {/* Product Image */}
         <div className="lg:col-span-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
           <img
             src={product.image}
@@ -56,7 +59,7 @@ export default function ProductDetail({ allProducts = [], onAddToCart, getItemQu
           />
         </div>
 
-        {/* Product Details & Actions */}
+        {/* Essential Product Details & Purchase Actions */}
         <div className="lg:col-span-7 space-y-5">
           <div>
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
@@ -100,6 +103,7 @@ export default function ProductDetail({ allProducts = [], onAddToCart, getItemQu
             </div>
           </div>
 
+          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
             <button
               onClick={() => onAddToCart && onAddToCart(product, quantity)}
@@ -120,6 +124,46 @@ export default function ProductDetail({ allProducts = [], onAddToCart, getItemQu
           </div>
         </div>
       </div>
+
+      {/* Product Delivery, Replacement & Authenticity Section */}
+      <section className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-700 pb-3 flex items-center gap-2">
+          <ShieldCheck className="w-4 h-4 text-blue-600" />
+          <span>Product Guarantees &amp; Fulfillment Specs</span>
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60 space-y-2">
+            <div className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 font-bold">
+              <Truck className="w-4 h-4 flex-shrink-0" />
+              <span>Express Delivery Time</span>
+            </div>
+            <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+              Dispatched within 24 hours. Delivered in 2–4 business days with live real-time GPS tracking.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60 space-y-2">
+            <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold">
+              <ShieldCheck className="w-4 h-4 flex-shrink-0" />
+              <span>100% Brand Authenticity</span>
+            </div>
+            <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+              Verified OEM product stock with official manufacturer seal, serial validation, &amp; 1-year brand warranty.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60 space-y-2">
+            <div className="flex items-center space-x-2 text-amber-600 dark:text-amber-400 font-bold">
+              <RotateCcw className="w-4 h-4 flex-shrink-0" />
+              <span>7-Day Replacement Policy</span>
+            </div>
+            <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+              Full 7-day hassle-free replacement guarantee for hardware defects or damaged shipments.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

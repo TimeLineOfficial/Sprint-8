@@ -4,16 +4,12 @@ import { ProductCard } from '../components/ProductCard';
 import { CATEGORIES } from '../data/productsGenerator';
 import { 
   ArrowRight, 
-  ShieldCheck, 
-  Truck, 
-  RotateCcw, 
   Smartphone, 
   Laptop, 
   Tv, 
   Shirt, 
   Headphones, 
   Activity,
-  Award,
   CheckCircle2
 } from 'lucide-react';
 
@@ -60,32 +56,7 @@ export default function Home({ products = [], onAddToCart, getItemQuantity }) {
         </div>
       </section>
 
-      {/* Guarantees Bar */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 sm:p-4 flex items-center space-x-3 shadow-sm">
-          <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-          <div>
-            <div className="font-bold text-slate-900 dark:text-white text-xs">Express Worldwide Shipping</div>
-            <div className="text-slate-500 text-[10px] sm:text-[11px]">24-Hour dispatch on verified hardware</div>
-          </div>
-        </div>
 
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 sm:p-4 flex items-center space-x-3 shadow-sm">
-          <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-          <div>
-            <div className="font-bold text-slate-900 dark:text-white text-xs">100% Brand Authenticity</div>
-            <div className="text-slate-500 text-[10px] sm:text-[11px]">Official manufacturer warranty included</div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 sm:p-4 flex items-center space-x-3 shadow-sm">
-          <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 dark:text-amber-400 flex-shrink-0" />
-          <div>
-            <div className="font-bold text-slate-900 dark:text-white text-xs">7-Day Easy Replacement</div>
-            <div className="text-slate-500 text-[10px] sm:text-[11px]">Hassle-free return policy</div>
-          </div>
-        </div>
-      </section>
 
       {/* Featured Products Grid Header */}
       <section className="space-y-4">
