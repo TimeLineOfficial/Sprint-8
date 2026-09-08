@@ -163,12 +163,14 @@ export default function App() {
         <footer className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
           <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
-              © 2026 Prodesk IT Software Engineering Team. Sprint 08 Performance Deliverable.
+              © 2026 Prodesk IT Enterprise Solutions. All Rights Reserved.
             </div>
-            <div className="flex items-center space-x-4 text-[11px] font-mono">
-              <span className="text-emerald-600 dark:text-emerald-400">Phase 1: React.lazy()</span>
-              <span className="text-emerald-600 dark:text-emerald-400">Phase 2: IntersectionObserver</span>
-              <span className="text-emerald-600 dark:text-emerald-400">Phase 3: SW &amp; IndexedDB</span>
+            <div className="flex items-center space-x-4 text-[11px] font-medium">
+              <span className="text-slate-600 dark:text-slate-300">99.99% Uptime SLA</span>
+              <span className="text-slate-600 dark:text-slate-300">•</span>
+              <span className="text-slate-600 dark:text-slate-300">High-Availability Cache</span>
+              <span className="text-slate-600 dark:text-slate-300">•</span>
+              <span className="text-slate-600 dark:text-slate-300">Enterprise Security</span>
             </div>
           </div>
         </footer>

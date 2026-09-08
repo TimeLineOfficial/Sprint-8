@@ -9,12 +9,12 @@ import {
   ShieldCheck, 
   WifiOff, 
   CheckCircle2, 
-  Database,
+  ShoppingBag,
   ArrowRight
 } from 'lucide-react';
 
 export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClearCart }) {
-  const { isOnline, addActionToQueue, queuedCount } = useOfflineQueue();
+  const { isOnline, addActionToQueue } = useOfflineQueue();
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isOfflineQueued, setIsOfflineQueued] = useState(false);
 
@@ -24,7 +24,6 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
     if (cart.length === 0) return;
 
     if (!isOnline) {
-      // Offline Mode: Queue order in IndexedDB
       await addActionToQueue('PLACE_ORDER', {
         cart,
         subtotal,
@@ -35,7 +34,6 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
       return;
     }
 
-    // Online Mode: Process instant order
     setIsOrderComplete(true);
     onClearCart();
 
@@ -68,16 +66,16 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
     return (
       <div className="max-w-xl mx-auto py-16 text-center space-y-6">
         <div className="w-20 h-20 bg-amber-100 dark:bg-amber-950 text-amber-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
-          <Database className="w-10 h-10 animate-bounce" />
+          <ShoppingBag className="w-10 h-10 animate-bounce" />
         </div>
         <div className="space-y-2">
           <span className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-xs font-bold uppercase tracking-wider">
-            IndexedDB Offline Queue Active
+            Offline Protection Active
           </span>
-          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Order Queued in IndexedDB</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Order Saved Safely</h2>
         </div>
         <p className="text-xs text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
-          You are currently offline. Your purchase mutation has been safely stored in browser <strong>IndexedDB</strong> and will automatically flush to the server as soon as internet connection is restored!
+          You are currently browsing offline. Your order details have been securely stored and will automatically sync and submit as soon as internet connection is restored.
         </p>
       </div>
     );
@@ -88,13 +86,13 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
       <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
         <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
           <ShoppingCart className="w-6 h-6 text-blue-600" />
-          <span>Checkout &amp; Cart Setup ({cart.length} items)</span>
+          <span>Checkout &amp; Cart ({cart.length} items)</span>
         </h1>
 
         {!isOnline && (
           <div className="px-3 py-1 bg-amber-500 text-slate-950 text-xs font-bold rounded-full flex items-center gap-1.5">
             <WifiOff className="w-3.5 h-3.5" />
-            <span>IndexedDB Offline Sync Enabled</span>
+            <span>Offline Protection Active</span>
           </div>
         )}
       </div>
@@ -147,7 +145,7 @@ export default function Checkout({ cart = [], onUpdateQty, onRemoveItem, onClear
                   : 'bg-blue-600 hover:bg-blue-700 text-white'
               }`}
             >
-              <span>{!isOnline ? 'QUEUE ORDER IN INDEXEDDB (OFFLINE)' : 'PLACE ORDER (INSTANT)'}</span>
+              <span>{!isOnline ? 'SAVE ORDER OFFLINE' : 'PLACE ORDER (INSTANT)'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { ProductCard } from '../components/ProductCard';
 import { CATEGORIES } from '../data/productsGenerator';
-import { Loader2, CheckCircle2, Layers, Search, Filter } from 'lucide-react';
+import { Loader2, CheckCircle2, ShieldCheck, Search, Filter } from 'lucide-react';
 
 const PAGE_SIZE = 20;
 
@@ -23,16 +23,15 @@ export default function ProductCatalog({ allProducts = [], onAddToCart, getItemQ
   const visibleProducts = filteredProducts.slice(0, page * PAGE_SIZE);
   const hasMore = visibleProducts.length < filteredProducts.length;
 
-  // Infinite Scroll Callback triggered by IntersectionObserver API
+  // Infinite Scroll Callback
   const handleLoadMore = useCallback(() => {
     if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
-    // Simulate brief network delay for pagination batch
     setTimeout(() => {
       setPage((prev) => prev + 1);
       setIsLoadingMore(false);
-    }, 400);
+    }, 350);
   }, [isLoadingMore, hasMore]);
 
   // Connect native IntersectionObserver API hook to sentinel node
@@ -43,11 +42,11 @@ export default function ProductCatalog({ allProducts = [], onAddToCart, getItemQ
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <div>
-          <div className="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <Layers className="w-4 h-4" /> Phase 2: Native IntersectionObserver Infinite Scroll
+          <div className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-blue-600" /> Official Hardware &amp; Devices Catalog
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            Product Catalog ({filteredProducts.length.toLocaleString()} Items)
+            Explore All Products ({filteredProducts.length.toLocaleString()} Items)
           </h1>
         </div>
 
@@ -61,7 +60,7 @@ export default function ProductCatalog({ allProducts = [], onAddToCart, getItemQ
               setSearchQuery(e.target.value);
               setPage(1);
             }}
-            placeholder="Search 5,000 products..."
+            placeholder="Search catalog products..."
             className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-blue-600"
           />
         </div>
@@ -113,24 +112,24 @@ export default function ProductCatalog({ allProducts = [], onAddToCart, getItemQ
         ))}
       </div>
 
-      {/* IntersectionObserver Sentinel & Loading Status */}
+      {/* Sentinel & Loading Status */}
       <div ref={sentinelRef} className="py-8 text-center space-y-3">
         {isLoadingMore && (
-          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-mono text-xs font-bold shadow-sm">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 text-xs font-bold shadow-sm">
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>[IntersectionObserver] Fetching next batch of items...</span>
+            <span>Loading additional items...</span>
           </div>
         )}
 
         {!hasMore && visibleProducts.length > 0 && (
-          <div className="text-xs text-slate-500 font-mono flex items-center justify-center gap-1">
+          <div className="text-xs text-slate-500 flex items-center justify-center gap-1">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-            <span>End of catalog reached ({visibleProducts.length} products loaded)</span>
+            <span>End of product catalog reached ({visibleProducts.length} items loaded)</span>
           </div>
         )}
 
-        <div className="text-[11px] text-slate-400 font-mono">
-          Showing {visibleProducts.length} of {filteredProducts.length} items (Page {page} of {Math.ceil(filteredProducts.length / PAGE_SIZE)})
+        <div className="text-[11px] text-slate-400">
+          Displaying {visibleProducts.length} of {filteredProducts.length} items
         </div>
       </div>
     </div>

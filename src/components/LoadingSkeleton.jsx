@@ -6,7 +6,7 @@ export const LoadingSkeleton = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6 animate-pulse">
       <div className="bg-slate-200 dark:bg-slate-800 h-32 rounded-2xl w-full flex items-center justify-center space-x-2 text-slate-400">
         <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
-        <span className="text-xs font-mono font-bold uppercase tracking-wider">Loading Chunk via React.lazy() &amp; Suspense...</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Loading Enterprise Portal Content...</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
